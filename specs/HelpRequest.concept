@@ -1,0 +1,50 @@
+<concept_spec>
+
+concept HelpRequest
+
+purpose
+    to allow people to post requests for help and to browse requests from others
+
+state
+    a set of Requests with
+        a request String
+        an owner String
+        a title String
+        a description String
+        a status of OPEN or CLOSED
+        a createdAt DateTime
+
+actions
+    createRequest (owner: String, title: String, description: String) : (request: String)
+        create a new help request owned by owner with given title and description, status OPEN
+        return the request id
+    deleteRequest (request: String) : (request: String)
+        delete the help request if it exists
+        return the request id
+    updateTitle (request: String, title: String) : (request: String)
+        update the title of the help request
+        return the request id
+    updateDescription (request: String, description: String) : (request: String)
+        update the description of the help request
+        return the request id
+    closeRequest (request: String) : (request: String)
+        set the status to CLOSED
+        return the request id
+
+queries
+    _get (request: String) : (request: String, owner: String, title: String, description: String, status: String, createdAt: DateTime)
+        fetch a single help request by id
+    _listAll () : (request: String, owner: String, title: String, description: String, status: String, createdAt: DateTime)
+        list all community support requests
+    _listByOwner (owner: String) : (request: String, title: String, createdAt: DateTime, status: String)
+        list requests created by the given owner
+    _getPayload (request: String) : (payload: Json)
+        return a payload object suitable for API response for a single request
+    _listAllPayload () : (payload: Json)
+        return a payload array of requests suitable for API responses
+
+operational principle
+    after createRequest (owner: o, title: "Need babysitter", description: "2-4pm") : (request: r)
+    then _get (request: r) shows status OPEN and title "Need babysitter"
+
+</concept_spec>

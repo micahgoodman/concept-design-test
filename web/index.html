@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Community Support Requests</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Community Support Requests</h1>
+    </header>
+
+    <main>
+      <section id="create">
+        <h2>Create a Request</h2>
+        <form id="create-form">
+          <label>
+            Title
+            <input id="title" name="title" required maxlength="120" />
+          </label>
+          <label>
+            Description
+            <textarea id="description" name="description" rows="4" required></textarea>
+          </label>
+          <button type="submit">Post Request</button>
+        </form>
+      </section>
+
+      <section id="list">
+        <h2>All Requests</h2>
+        <div id="requests"></div>
+      </section>
+    </main>
+
+    <template id="card-template">
+      <div class="card">
+        <div class="card-head">
+          <h3 class="title"></h3>
+          <span class="badge"></span>
+        </div>
+        <p class="description"></p>
+        <div class="meta"></div>
+        <div class="actions">
+          <button class="close">Close</button>
+          <button class="delete danger">Delete</button>
+        </div>
+      </div>
+    </template>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
